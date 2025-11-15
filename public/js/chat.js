@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para obtener y mostrar mensajes
     function fetchMessages() {
-        // Usar una ruta relativa para que funcione tanto en local como en producción
-        fetch('/messages')
+        // Apuntar al servidor local, ya que el despliegue está bloqueado por el firewall
+        fetch('http://localhost:3000/messages')
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
-            throw new Error('No se pudieron cargar los mensajes desde el servidor.');
+            throw new Error('No se pudieron cargar los mensajes desde el servidor local.');
         })
         .then(messages => {
             renderMessages(messages);
